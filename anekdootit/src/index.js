@@ -19,18 +19,20 @@ const Statistics = ({anecdotes, votes}) => {
     let index = 0
     
     anecdotes.forEach (a => {
-        console.log('Statistics: a: ', a, ' votes: ', votes[index], ' index: ', index)
-        if (votes[index]>mostVotedVotes) {
+/*         console.log('Statistics: a: ', a, ' votes: ', votes[index], ' index: ', index)
+ */        if (votes[index]>mostVotedVotes) {
             mostVotedIndex=index
             mostVotedAnecdote = a
+            mostVotedVotes=votes[index]
         }
         index++
     })
     if(mostVotedAnecdote==='') {
         return <div>No votes</div>
     }
+    console.log('Most voted: ', mostVotedAnecdote, 'Votes: ', mostVotedVotes)
     return (
-        <div>Most voted anecdote is <br />
+        <div><h1>Most voted anecdote is</h1>
             {mostVotedAnecdote}
         </div>
     )
@@ -49,7 +51,7 @@ const App = (props) => {
     const addVote = (selected) => {
         const copyVotes = [...votes]
 /*         console.log('votes.length: ',votes.length,' copyVotes.length: ', copyVotes.length)
- */        copyVotes[selected] = votes[selected]+1
+ */        copyVotes[selected] += 1
 /*         console.log('copyVotes[selected]',copyVotes[selected], 'selected: ',selected)
  */        setVotes(copyVotes)
 /*         console.log('votes[selected]: ',votes[selected])
